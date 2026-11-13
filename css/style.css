@@ -1458,3 +1458,563 @@ select:focus-visible {
     letter-spacing: 3px;
     text-transform: uppercase;
 }
+
+/* =========================================================
+   RESPONSIVE REFINEMENTS
+   Preserve original desktop appearance
+========================================================= */
+
+/* BRAND */
+.navbar-brand {
+    flex: 0 0 auto;
+    gap: 10px;
+}
+
+.brand-name {
+    color: var(--text);
+    font-family: Rajdhani, Inter, sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    line-height: 1;
+}
+
+/* MOBILE WALLET BUTTON */
+.mobile-wallet {
+    display: none;
+}
+
+
+/* =========================================================
+   TABLET AND MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    :root {
+        --page-gutter: 20px;
+        --section-gap: 30px;
+    }
+
+    html {
+        scroll-padding-top: 76px;
+    }
+
+    /* NAVBAR */
+
+    .site-header {
+        width: calc(100% - var(--page-gutter) * 2);
+        min-height: 76px;
+        gap: 12px;
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .brand-logo {
+        width: 45px;
+        height: 54px;
+        flex: 0 0 auto;
+    }
+
+    .brand-name {
+        font-size: clamp(15px, 3.3vw, 21px);
+        letter-spacing: clamp(1px, .35vw, 2.5px);
+        white-space: nowrap;
+    }
+
+    /* HAMBURGER BUTTON */
+
+    .menu-toggle {
+        display: block;
+        order: 3;
+        flex: 0 0 auto;
+        margin-left: auto;
+        padding: 9px;
+    }
+
+    .header-actions {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .header-actions .icon-button,
+    .header-actions .wallet-button {
+        display: none;
+    }
+
+    /* MOBILE NAVIGATION MENU */
+
+    .primary-nav {
+        position: absolute;
+        top: calc(100% - 1px);
+        left: 0;
+        right: 0;
+        z-index: 40;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding: 8px 16px 14px;
+
+        border: 1px solid var(--border);
+        border-radius: 8px;
+
+        background: rgba(12, 13, 14, .98);
+        box-shadow: 0 15px 30px #0008;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-7px);
+
+        transition:
+            opacity var(--transition),
+            transform var(--transition),
+            visibility var(--transition);
+    }
+
+    .primary-nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .primary-nav a {
+        display: block;
+        padding: 13px 5px;
+        border-bottom: 1px solid #272829;
+        font-size: 13px;
+    }
+
+    .primary-nav a:last-of-type {
+        border-bottom: 0;
+    }
+
+    /* WALLET BUTTON INSIDE MENU */
+
+    .primary-nav .mobile-wallet {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        align-self: flex-start;
+
+        margin-top: 12px;
+        padding: 10px 16px;
+
+        border: 1px solid #713019;
+        border-radius: 5px;
+
+        color: #e98a6d;
+        font-size: 12px;
+    }
+
+    /* HAMBURGER ANIMATION */
+
+    .menu-toggle span {
+        width: 25px;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+
+    /* =====================================================
+       HERO SECTION
+    ===================================================== */
+
+    .hero {
+        min-height: 690px;
+        align-items: flex-start;
+
+        padding-top: clamp(42px, 8vw, 62px);
+        padding-bottom: 92px;
+    }
+
+    .hero-media {
+        inset: 0 calc(var(--page-gutter) * -1) 0;
+    }
+
+    .hero-media::after {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(8, 9, 10, .98) 0%,
+                rgba(8, 9, 10, .82) 34%,
+                rgba(8, 9, 10, .38) 66%,
+                rgba(8, 9, 10, .82) 100%
+            ),
+            linear-gradient(
+                90deg,
+                rgba(8, 9, 10, .45),
+                rgba(8, 9, 10, .08)
+            );
+    }
+
+    .hero-slide {
+        object-position: 62% bottom;
+    }
+
+    .hero-copy {
+        width: 100%;
+        max-width: 600px;
+        padding: 0;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 8.8vw, 60px);
+        line-height: 1;
+        overflow-wrap: normal;
+    }
+
+    .hero-description {
+        max-width: 510px;
+        margin: 18px 0 24px;
+        font-size: clamp(13px, 2.4vw, 16px);
+        line-height: 1.65;
+    }
+
+    .desktop-break {
+        display: none;
+    }
+
+    .hero-actions {
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px 20px;
+    }
+
+    .hero-actions .button {
+        min-height: 44px;
+    }
+
+
+    /* STATISTICS */
+
+    .stats-panel {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        width: min(100%, 510px);
+        margin-top: 30px;
+    }
+
+    .stat {
+        display: flex;
+        min-width: 0;
+        justify-content: center;
+        gap: 7px;
+        padding: 12px 8px;
+    }
+
+    .stat-icon {
+        flex: 0 0 auto;
+        font-size: 14px;
+    }
+
+    .stat strong {
+        font-size: clamp(15px, 3.3vw, 20px);
+    }
+
+    .stat small {
+        font-size: clamp(8px, 1.8vw, 10px);
+        white-space: nowrap;
+    }
+
+    .hero-controls {
+        right: 0;
+        bottom: 22px;
+    }
+
+
+    /* FEATURED MODEL */
+
+    .featured {
+        min-height: 370px;
+        padding: 22px;
+    }
+
+    .featured-copy {
+        width: min(100%, 430px);
+    }
+
+    .featured-image {
+        width: 100%;
+        height: 62%;
+        top: auto;
+        bottom: 0;
+        object-position: center;
+    }
+
+
+    /* CAR COLLECTION */
+
+    .car-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    /* NEWSLETTER */
+
+    .newsletter {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .newsletter-form {
+        width: 100%;
+    }
+
+
+    /* MODEL DETAILS MODAL */
+
+    .model-modal {
+        grid-template-columns: 1fr;
+        width: min(560px, 100%);
+        max-height: 90dvh;
+    }
+
+    .modal-image-wrap {
+        min-height: 190px;
+        max-height: 240px;
+    }
+
+    .cookie-panel {
+        max-width: calc(100% - 28px);
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE DEVICES
+========================================================= */
+
+@media (max-width: 480px) {
+
+    :root {
+        --page-gutter: 16px;
+        --section-gap: 26px;
+    }
+
+
+    /* NAVBAR */
+
+    .site-header {
+        min-height: 68px;
+        gap: 6px;
+    }
+
+    .navbar-brand {
+        gap: 6px;
+    }
+
+    .brand-logo {
+        width: 38px;
+        height: 48px;
+    }
+
+    .brand-name {
+        font-size: clamp(12px, 3.5vw, 16px);
+        letter-spacing: .08em;
+    }
+
+    .menu-toggle {
+        padding: 8px;
+    }
+
+    .menu-toggle span {
+        width: 22px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 650px;
+        padding-top: 42px;
+        padding-bottom: 82px;
+    }
+
+    .hero h1 {
+        font-size: clamp(37px, 10vw, 47px);
+    }
+
+    .hero-description {
+        max-width: 100%;
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        gap: 12px 16px;
+    }
+
+    .hero-actions .button {
+        padding-inline: 16px;
+        font-size: 11px;
+    }
+
+    .text-link {
+        gap: 7px;
+        font-size: 11px;
+    }
+
+
+    /* STATISTICS */
+
+    .stats-panel {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    .stat {
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        padding: 10px 4px;
+        text-align: center;
+    }
+
+    .stat-icon {
+        display: none;
+    }
+
+    .stat strong {
+        font-size: 17px;
+    }
+
+    .stat small {
+        font-size: 9px;
+    }
+
+
+    /* FEATURED MODEL */
+
+    .featured {
+        min-height: 350px;
+        padding: 18px;
+    }
+
+
+    /* LINEUP */
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .lineup-tools {
+        width: 100%;
+    }
+
+    .model-filter {
+        max-width: none;
+    }
+
+    .car-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .card-image-button {
+        height: clamp(110px, 30vw, 150px);
+    }
+
+    .car-card-content {
+        padding: 0 8px 10px;
+    }
+
+    .car-card h3 {
+        font-size: clamp(11px, 3vw, 14px);
+    }
+
+    .car-card p {
+        font-size: 9px;
+    }
+
+
+    /* NEWSLETTER */
+
+    .newsletter {
+        padding: 18px;
+    }
+
+    .newsletter-form {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter-form .button {
+        width: 100%;
+    }
+
+
+    /* FOOTER */
+
+    .site-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .site-footer nav {
+        gap: 14px;
+    }
+
+
+    /* COOKIE PANEL */
+
+    .cookie-panel {
+        left: 10px;
+        bottom: 10px;
+        width: calc(100% - 20px);
+        padding: 13px;
+        gap: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY NARROW SCREENS
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .brand-name {
+        font-size: 11px;
+        letter-spacing: .05em;
+    }
+
+    .brand-logo {
+        width: 34px;
+        height: 43px;
+    }
+
+    .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats-panel {
+        margin-top: 20px;
+    }
+
+}
